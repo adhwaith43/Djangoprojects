@@ -22,5 +22,6 @@ urlpatterns = [
     path('',views.home,name="home"),
     path('viewbooks/',views.viewBooks,name="viewbooks"),
     path('addbooks/',views.addBooks,name="addbooks"),
+    path('detail/',views.detail,name="detail"),
 ]
 

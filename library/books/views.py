@@ -37,4 +37,9 @@ def viewBooks(request):
     print(b)
     context={'books':b}
     return render(request,"viewbooks.html",context)
+
+def detail(request):
+    if (request.method=='GET'):
+        return render(request,'detail.html')
+
     
