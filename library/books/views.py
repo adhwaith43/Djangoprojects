@@ -54,7 +54,16 @@ def edit(request,i):
     if (request.method=='GET'):
         b=Book.objects.get(id=i)
         form_instance=Addbooks(instance=b)
+        
         context={'form':form_instance}
         return render(request,'edit.html',context)
+    
+    if (request.method=='POST'):
+        b=Book.objects.get(id=i)
+        form_instance =Addbooks(request.POST,request.FILES,instance=b)
+
+        if (form_instance.is_valid()):
+            form_instance.save()
+            return redirect('books:viewbooks')
 
     
