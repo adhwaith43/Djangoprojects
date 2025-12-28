@@ -2,7 +2,34 @@
 
 {% block content %}
 <div class="container text-center w-50 p-5 mt-5 border border-3 border-danger">
-<h1>Book Details</h1>
+    <h1>Book Details</h1>
+    <table class="table table-bordered w-50 mx-auto mt-5 mb-5">
+        {{book}}
+        <tr>
+            <th>Image</th>
+            <td><img src="{{book.image.url}}" height="100px" width="100px"></td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{book.title}}</td>
+        </tr>
+        <tr>
+            <th>Author</th>
+            <td>{{book.author}}</td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>{{book.price}}</td>
+        </tr>
+        <tr>
+            <th>Pages</th>
+            <td>{{book.pages}}</td>
+        </tr>
+        <tr>
+            <th>Language</th>
+            <td>{{book.language}}</td>
+        </tr>
+    </table>
 </div>
 
 {% endblock %}

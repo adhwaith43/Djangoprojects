@@ -38,8 +38,23 @@ def viewBooks(request):
     context={'books':b}
     return render(request,"viewbooks.html",context)
 
-def detail(request):
+def detail(request,i):
     if (request.method=='GET'):
-        return render(request,'detail.html')
+        b=Book.objects.get(id=i)
+        context={'book':b}
+        return render(request,'detail.html',context)
+
+def delete(request,i):
+    if (request.method=='GET'):
+        b=Book.objects.get(id=i)
+        b.delete()
+        return redirect('books:viewbooks')
+    
+def edit(request,i):
+    if (request.method=='GET'):
+        b=Book.objects.get(id=i)
+        form_instance=Addbooks(instance=b)
+        context={'form':form_instance}
+        return render(request,'edit.html',context)
 
     

@@ -23,9 +23,9 @@
             <td>{{i.price}}</td>
             <td>{{i.language}}</td>
             <td>
-                <a class="btn btn-danger" href="{% url 'books:detail'%}">Detail</a>
-                <a class="btn btn-danger" href="">Edit</a>
-                <a class="btn btn-danger" href="">Delete</a>
+                <a class="btn btn-danger" href="{% url 'books:detail' i.id %}">Detail</a>
+                <a class="btn btn-danger" href="{% url 'books:edit' i.id %}">Edit</a>
+                <a class="btn btn-danger" href="{% url 'books:delete' i.id %}">Delete</a>
             </td>
         </tr>
         {% endfor %}

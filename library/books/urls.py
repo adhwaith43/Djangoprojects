@@ -22,6 +22,8 @@ urlpatterns = [
     path('',views.home,name="home"),
     path('viewbooks/',views.viewBooks,name="viewbooks"),
     path('addbooks/',views.addBooks,name="addbooks"),
-    path('detail/',views.detail,name="detail"),
+    path('detail/<int:i>',views.detail,name="detail"),
+    path('delete/<int:i>',views.delete,name="delete"),
+    path('edit/<int:i>',views.edit,name="edit")
 ]
 
