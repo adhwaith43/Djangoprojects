@@ -1,0 +1,17 @@
+ h1 {
+    margin-top: 30px;
+    margin-bottom: .5rem;
+    font-weight: 700;
+    line-height: 1.5;
+}
+body{
+    background-color: burlywood;
+}
+
+.navbar-light .navbar-brand {
+    color: rgba(225, 7, 214, 0.383) ;
+}
+
+.navbar-brand:hover{
+    color: red !important;
+}

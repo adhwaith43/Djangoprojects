@@ -1,0 +1,26 @@
+{%extends 'base.html' %}
+
+{% block content %}
+<div class="container text-center w-50 p-5 mt-5 border border-3 border-danger">
+<h1 class="mb-3">Factorial</h1>
+<form method="POST">
+    {% csrf_token %}
+    <div class="mb-4 text-start" >
+        <div class="mb-3">
+        <label for="weight" class="form-label">Enter weight(in kg)</label>
+        <input name="w" value="{{n1}}" type="number" class="form-control border-danger" id="height" placeholder="Enter weight">
+        </div>
+        <div class="mb-3">
+        <label for="height" class="form-label">Enter Height(in cm)</label>
+        <input name="h" value="{{n2}}" type="number" class="form-control border-danger" id="weight" placeholder="Enter Height">
+        </div>
+    </div>
+    <div>
+        <input type="submit" class="btn btn-danger" value="BMI">
+    </div>
+</form>
+</div>
+<div class="mt-3">
+    <h3 class="text-center text-dark">Factorial is {{result}}</h3>
+</div>
+{% endblock %}
