@@ -1,0 +1,56 @@
+{%extends 'base.html' %}
+
+{% block content %}
+<div class="container text-center w-50 p-5 mt-5 border border-3 border-danger">
+    <h1>Movie Details</h1>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6">
+                <img src="{{movie.image.url}}" height="200px" width="200px">
+            </div>
+
+
+            <div class="col-6">
+
+                <table style="border-collapse: separate; border-spacing: 10px;">
+                    <tr>
+                        <th>Moviename</th>
+                        <td>{{movie.moviename}}</td>
+                    </tr>
+                    <tr>
+                        <th>Short Description:</th>
+                        <td>{{movie.description}}</td>
+                    </tr>
+                    <tr>
+                        <th>Director: </th>
+                        <td>{{movie.director}}</td>
+                    </tr>
+                    <tr>
+                        <th>Language:</th>
+                        <td>{{movie.language}}</td>
+                    </tr>
+                    <tr>
+                        <th>Year: </th>
+                        <td>{{movie.year}}</td>
+                    </tr>
+                </table>
+
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="{% url 'edit' movie.id %}" class="btn btn-danger">Edit</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="{% url 'delete' movie.id %}"  class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

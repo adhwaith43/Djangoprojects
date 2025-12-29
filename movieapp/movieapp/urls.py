@@ -21,7 +21,11 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.viewMovies,name="viewMovies"),
-    path('addmovie/',views.addmovie,name="addmovie")
+    path('addmovie/',views.addmovie,name="addmovie"),
+
+    path('detail/<int:i>',views.detail,name="detail"),
+    path('delete/<int:i>',views.delete,name="delete"),
+    path('edit/<int:i>',views.edit,name="edit")
 ]
 
 from django.conf.urls.static import static

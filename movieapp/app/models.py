@@ -6,5 +6,5 @@ class Movie(models.Model):
     description=models.TextField()
     director=models.CharField(max_length=50)
     language=models.CharField(max_length=50)
-    year=models.IntegerField
+    year=models.IntegerField()
 # Create your models here.
