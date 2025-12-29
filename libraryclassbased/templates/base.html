@@ -23,6 +23,7 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'books:home'%}">Home</a>
         </li>
+        {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link active" href="{% url 'books:addbooks'%}">AddBooks</a>
         </li>
@@ -30,14 +31,16 @@
           <a class="nav-link active" href="{% url 'books:viewbooks'%}" tabindex="-1" aria-disabled="true">View Books</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link active" href="{% url 'users:userlogout'%}" tabindex="-1" aria-disabled="true">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
           <a class="nav-link active" href="{% url 'users:register'%}" tabindex="-1" aria-disabled="true">Register</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="{% url 'users:userlogin'%}" tabindex="-1" aria-disabled="true">login</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="{% url 'users:userlogout'%}" tabindex="-1" aria-disabled="true">Logout</a>
-        </li>
+        {% endif %}
       </ul>
     </div>
   </div>

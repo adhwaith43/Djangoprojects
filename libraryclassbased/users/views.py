@@ -27,7 +27,8 @@ class Register(View):
             return redirect('users:userlogin')
         else:
             print(form_instance.errors)
-    
+
+from django.contrib import messages    
 from django.contrib.auth import authenticate,login,logout
 class Userlogin(View):
     def post(self,request):
@@ -49,7 +50,8 @@ class Userlogin(View):
                 return redirect('books:home')   #redirects to the homepage
 
             else:
-                return HttpResponse("Invalid User credentials")
+                messages.error(request, "Invalid User credentials")
+                return redirect('users:userlogin')
             
 
     def get(self,request):
