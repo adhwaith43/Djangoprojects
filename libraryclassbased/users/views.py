@@ -2,6 +2,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from users.forms import SignupForm
+from users.forms import LoginForm
 from django.views import View
 
 
@@ -27,10 +28,15 @@ class Register(View):
         else:
             print(form_instance.errors)
     
-class UserLogin(View):
+
+class Userlogin(View):
     def get(self,request):
-        return render(request,"userLogin.html")
+        form_instance=LoginForm()
+        context={"form":form_instance}
+        return render(request,'userlogin.html',context)
+    
 class Userlogout(View):
     def get(self,request):
         return redirect('users:userlogin')
+
 

@@ -20,6 +20,6 @@ app_name='users'
 
 urlpatterns = [
     path('',views.Register.as_view(),name="register"),
-    path('userlogin/',views.UserLogin.as_view(),name="userlogin"),
+    path('userlogin/',views.Userlogin.as_view(),name="userlogin"),
     path('userlogout/',views.Userlogout.as_view(),name="userlogout"),
 ]

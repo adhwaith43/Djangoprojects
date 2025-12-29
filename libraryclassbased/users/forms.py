@@ -7,3 +7,6 @@ class SignupForm(UserCreationForm):
         model=User
         fields=['username','password1','first_name','last_name','password2'] #password2-confirm password
         
+class LoginForm(forms.Form):
+    username=forms.CharField()
+    password=forms.CharField(widget=forms.PasswordInput)
