@@ -18,9 +18,9 @@ Including another URLconf
 from django.urls import path
 from users import views
 
-app_name="employee"
+app_name="users"
 
 urlpatterns = [
     path('',views.Home.as_view(),name="home"),
-    path('register/',views.Emloyeeregister.as_view(),name="register")
+    # path('register/',views.Emloyeeregister.as_view(),name="register")
 ]
