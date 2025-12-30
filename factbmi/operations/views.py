@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 def home(request):
     return render(request,'home.html')
+
 def factorial(request):
     if (request.method=="GET"):
         print(request.POST)
@@ -14,6 +15,7 @@ def factorial(request):
             fact=fact*i
         context={'result':fact,'n':n}
         return render(request,'factorial.html',context)
+    
 def bmi(request):
     if (request.method=="GET"):
         print(request.POST)
