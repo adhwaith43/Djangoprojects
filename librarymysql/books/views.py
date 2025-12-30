@@ -66,4 +66,25 @@ def edit(request,i):
             form_instance.save()
             return redirect('books:viewbooks')
 
+from django.db.models import Q
+
+def search(request):
+    if(request.method=='GET'):
+        query=request.GET['q']
+        print(query)
+        
+        if query:
+
+            # filter query
+            # Django lookups
+            # Qobject
+            # b=Book.objects.filter(title=query)# exactly equal
+            # icontains--for lowercase/upercase conditions
+            b=Book.objects.filter(Q(title__icontains=query)|
+                                Q(author__icontains=query)|
+                                Q(price__icontains=query)|
+                                Q(language__icontains=query)
+                                )
+            context={'books':b}
+            return render(request,"search.html",context)
     
