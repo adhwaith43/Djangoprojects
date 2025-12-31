@@ -1,0 +1,34 @@
+{%extends 'base.html' %}
+
+{% block content %}
+<div class="container text-center w-50 p-5 mt-5 border border-3 border-danger">
+    <h1>Employee Details</h1>
+    <table class="table table-bordered w-50 mx-auto mt-5 mb-5">
+        <tr>
+            <th>Image</th>
+            <td><img src="{{form.image.url}}" height="100px" width="100px"></td>
+        </tr>
+        <tr>
+            <th>Empid</th>
+            <td>{{form.empid}}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{form.name}}</td>
+        </tr>
+        <tr>
+            <th>Deptname</th>
+            <td>{{form.deptname}}</td>
+        </tr>
+        <tr>
+            <th>Salary</th>
+            <td>{{form.salary}}</td>
+        </tr>
+        <tr>
+            <th>Designation</th>
+            <td>{{form.designation}}</td>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}

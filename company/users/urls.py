@@ -21,6 +21,7 @@ from users import views
 app_name="users"
 
 urlpatterns = [
-    path('',views.Home.as_view(),name="home"),
-    # path('register/',views.Emloyeeregister.as_view(),name="register")
+    path('',views.Register.as_view(),name="register"),
+    path('userlogin/',views.Userlogin.as_view(),name="userlogin"),
+    path('userlogout/',views.Userlogout.as_view(),name="userlogout"),
 ]

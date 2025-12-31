@@ -1,0 +1,54 @@
+{%extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center mt-5">VIEW EMPLOYEES</h1>
+<div class="container text-center w-75 p-5 mt-5 border border-3 border-danger">
+
+    <!-- {{books}} -->
+    <table class="table table-bordered">
+        <tr>
+            <th>Image</th>
+            <th>Empid</th>
+            <th>Name</th>
+            <th>Deptname</th>
+            <th>Salary</th>
+            <th>Designation</th>
+            <th>Actions</th>
+        </tr>
+        {% for e in form%}
+        <tr>
+            <td><img src="{{e.image.url}}" height="100px" width="100px"></td>
+            <td>{{e.empid}}</td>
+            <td>{{e.name}}</td>
+            <td>{{e.deptname}}</td>
+            <td>{{e.salary}}</td>
+            <td>{{e.designation}}</td>
+            <td>
+                <a class="btn btn-danger" href="{% url 'employee:detail' e.id %}">Detail</a>
+                <a class="btn btn-danger" href="{% url 'employee:edit' e.id %}">Edit</a>
+                <a class="btn btn-danger" href="{% url 'employee:delete' e.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    <!-- <ol>
+            {%for i in books%}
+            <li>Item</li>
+            <br>
+            <ul>
+                <li>Image: <img src="{{i.image.url}}" height="100px" width="100px" ></li>
+                <li>Title: {{i.title}}</li>
+                <li>Author: {{i.author}}</li>
+                <li>Pages: {{i.pages}}</li>
+                <li>Price: {{i.price}}</li>
+                <li>Language: {{i.language}}</li>
+            </ul>
+            <br>
+            <br><br>
+            {% endfor %}
+        </ol> -->
+    </table>
+
+</div>
+
+{% endblock %}
