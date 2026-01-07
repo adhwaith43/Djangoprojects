@@ -1,0 +1,16 @@
+body{
+  background-color: rgb(67, 81, 59);
+  color: bisque;  
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: yellow;         /* highlight on hover */
+}
+
+.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
+    color: rgba(149, 72, 72, 0.9);
+}
