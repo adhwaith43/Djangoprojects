@@ -11,5 +11,8 @@ urlpatterns = [
     path('studenthome/',views.Studenthome.as_view(),name="studenthome"),
     path('userlogout/',views.Userlogout.as_view(),name="userlogout"),
     path('addschool/',views.Addschool.as_view(),name="addschool"),
-
+    path('viewschool/',views.Viewschool.as_view(),name="viewschool"),
+    path('schooldetail/<int:i>',views.SchoolDetail.as_view(),name="schooldetail"),
+    path('studentjoin/<int:i>',views.Studentjoin.as_view(),name="studentjoin"),
+    path('leaveschool/',views.LeaveSchool.as_view(),name="leaveschool"),
 ]

@@ -3,8 +3,8 @@
 
 {% block content %}
 <div class="container w-50 p-5 mt-5 border border-3 border-danger">
-    <h1 class="text-center">Add School Details</h1>
-    <form method="POST" enctype="multipart/form-data">
+    <h1 class="text-center">Student Join Form</h1>
+    <form method="POST">
         {% csrf_token %}
         {{form|crispy}}
         <div class="text-center">

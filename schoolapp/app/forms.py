@@ -1,5 +1,5 @@
 from django import forms
-from app.models import CustomUser,School
+from app.models import CustomUser,School,Student
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -17,7 +17,12 @@ class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-class Addbooks(forms.ModelForm):
+class AddschoolForm(forms.ModelForm):
     class Meta:
         model=School
         fields='__all__'
+
+class StudentForm(forms.ModelForm):
+    class Meta:
+        model=Student
+        fields=['name','age','place']

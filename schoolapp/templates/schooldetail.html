@@ -1,0 +1,47 @@
+{%extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center mt-5">School Details</h1>
+<div class="container text-center w-75 p-5 mt-5 border border-3 border-danger ">
+
+
+    <!-- {{schools}} 
+    <ol >
+        {%for i in schools%}
+        <br>
+            <li>Name :{{i.name}}</li>
+            <li>Location: {{i.location}}</li>
+            <li>Principal: {{i.principal}}</li>
+        <br>
+        <br><br>
+        {% endfor %}
+    </ol> -->
+
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <td>{{school.name}}</td>
+        </tr>
+        <tr>
+            <th>Location</th>
+            <td>{{school.location}}</td>
+        </tr>
+        <tr>
+            <th>Principal</th>
+            <td>{{school.principal}}</td>
+        </tr>
+    </table>
+    {% if user.is_authenticated %}
+    {% if user.is_superuser == False %}
+            {% if can_join == True %}
+    <a href="{% url 'app:studentjoin' school.id %}" class="btn btn-danger">Join now</a>
+            {% endif %}
+            {% if is_student == True %}
+    <a href="{% url 'app:leaveschool' %}" class="btn btn-danger">Leave now</a>
+            {% endif %}
+    {% endif %}
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{%extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center mt-5">VIEW SCHOOLS</h1>
+<div class="container text-center w-75 p-5 mt-5 border border-3 border-danger ">
+
+
+ <!-- {{schools}}  -->
+    <ol >
+        {%for i in schools%}
+        <br>
+            <li><a href="{% url 'app:schooldetail' i.id %}">{{i.name}}</a></li>
+        <br>
+        <br><br>
+        {% endfor %}
+    </ol>
+
+</div>
+
+{% endblock %}
+
