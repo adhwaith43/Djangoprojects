@@ -18,5 +18,5 @@ class Student(models.Model):
     name=models.CharField(max_length=100)
     age=models.IntegerField()
     place=models.CharField(max_length=100)
-    school=models.ForeignKey(School,on_delete=models.CASCADE)
+    school=models.ForeignKey(School,on_delete=models.CASCADE,related_name='students')
     user=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
