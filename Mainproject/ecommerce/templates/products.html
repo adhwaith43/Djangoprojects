@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="container-fluid mb-4">
+        <div class="row">
+        <img src="{{category.image.url}}" height="450px" width="150px" alt="">
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>{{category.name}}</h1>
+                    <p>{{category.description}}</p>
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock %}

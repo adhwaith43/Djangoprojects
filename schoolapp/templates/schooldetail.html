@@ -43,5 +43,22 @@
     {% endif %}
     {% endif %}
 </div>
+ {% if user.is_authenticated %}
+    {% if user.is_superuser == True %}
+    <ol>
+    {% for j in school.students.all %}
+<li>
+    <b class="me-4">Student Name: {{j.name}}</b>
+    <b class="me-4">Age: {{j.age}}</b>
+    <b class="me-4">Place: {{j.place}}</b>
+</li>
+{% endfor %}
+</ol>
 
+
+{% endif %}
+    {% endif %}
+<div>
+
+</div>
 {% endblock %}
