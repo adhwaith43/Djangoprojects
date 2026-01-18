@@ -30,6 +30,7 @@ urlpatterns = [
     path('userhome/',views.Userhome.as_view(),name="userhome"),
     path('userlogout/',views.Userlogout.as_view(),name="userlogout"),
     path('productdetail/<int:i>/',views.ProductDetail.as_view(),name="productdetail"),
+    path('editproduct/<int:i>/',views.Editproduct.as_view(),name="editproduct"),
 ]
 
 from django.conf.urls.static import static

@@ -31,7 +31,7 @@ class Userhome(View):
         return render(request,'userhome.html')
 
 
-from shop.forms import SignupForm, LoginForm
+from shop.forms import SignupForm, LoginForm,EditproductForm
 # Register
 class Register(View):
     def get(self, request):
@@ -124,3 +124,18 @@ class ProductDetail(View):
         p=Product.objects.get(id=i)
         context={'product':p}
         return render(request,'productdetail.html',context)
+    
+
+class Editproduct(View):
+    def get(self,request,i):
+        b=Product.objects.get(id=i)
+        form_instance=EditproductForm(instance=b)
+        context={'form':form_instance}
+        return render(request,'editproducts.html',context)
+    
+    def post(self,request,i):
+        p=Product.objects.get(id=i)
+        form_instance =EditproductForm(request.POST,instance=p)
+        if form_instance.is_valid():
+                form_instance.save()
+                return redirect('shop:categories')

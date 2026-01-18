@@ -11,14 +11,19 @@
             </div>
             <div class="col-lg-6">
                 <h2 class="noo-sh-title-top">{{product.name}}</h2>
-                <h4 class="mb-2"> Price: {{product.price}}</h4>
-                <h4>Currently {% if product.stock > 0 %} {{product.stock}} available items{% else %} Out of stock {% endif %}</h4>
+                <h4 class="mt-3"> Price: {{product.price}}</h4>
+                <h4 class="mt-3">Currently 
+                    {% if product.stock > 0 %} 
+                    {{product.stock}} available items
+                    {% else %} 
+                    Out of stock 
+                    {% endif %}</h4>
                 <hr>
                 <h3>Short Description</h3>
-                <p>{{product.description}}</p>
+                <p class="mt-3">{{product.description}}</p>
 
                 {% if user.is_superuser == True %}
-                <a class="btn hvr-hover" href="{% url 'admin:index' %}">Add Stock</a>
+                <a class="btn hvr-hover" href="{% url 'shop:editproduct' product.id %}">Add Stock</a> <!-- connect directly to admin page -->
                 {% else %}
                     {% if product.stock > 0 %}
                 <a class="btn hvr-hover" href="#">Add to Cart</a>
