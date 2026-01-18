@@ -24,3 +24,12 @@ class Product(models.Model):
     
     def __str__(self):
         return self.name
+
+# Modle for user
+from django.contrib.auth.models import AbstractUser
+
+
+class CustomUser(AbstractUser):
+    phone=models.CharField(max_length=20)
+    gender=models.CharField(max_length=20)
+    role=models.CharField(max_length=20)

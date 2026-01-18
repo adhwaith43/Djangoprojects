@@ -17,7 +17,7 @@ class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-class AddcategoryForm(forms.Form):
+class AddcategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = '__all__'
@@ -29,3 +29,4 @@ class AddproductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['name', 'description', 'image', 'price', 'stock', 'category']
+

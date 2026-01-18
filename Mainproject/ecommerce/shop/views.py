@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
-from shop.models import Category
+from shop.models import Category,Product
 
 
 #ALL Categories
@@ -17,3 +17,110 @@ class Categoryproducts(View):
         c=Category.objects.get(id=i)
         context={'category':c}
         return render(request,'products.html',context)
+
+
+
+# admin home
+class AdminHome(View):
+    def get(self,request):
+        return render(request,'adminhome.html')
+    
+# user home
+class Userhome(View):
+    def get(self,request):
+        return render(request,'userhome.html')
+
+
+from shop.forms import SignupForm, LoginForm
+# Register
+class Register(View):
+    def get(self, request):
+        form_instance = SignupForm()
+        context = {"form": form_instance}
+        return render(request, 'userregister.html', context)
+
+    def post(self, request):
+        form_instance = SignupForm(request.POST, request.FILES)
+        if form_instance.is_valid():
+            form_instance.save()
+            return redirect('shop:userlogin')
+        else:
+            print(form_instance.errors)
+
+
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+
+
+class Userlogin(View):
+    def post(self, request):
+        form_instance = LoginForm(request.POST)
+        if form_instance.is_valid():
+            data = form_instance.cleaned_data
+            print(data)
+            u = data['username']
+            p = data['password']
+
+            user = authenticate(username=u, password=p)
+
+            if user and user.is_superuser==True:
+                login(request, user)
+                return redirect('shop:adminhome')
+            
+            elif user and user.role == "user":
+                login(request,user)
+                return redirect('shop:userhome')
+            else:
+                messages.error(request, "Invalid User credentials")
+                return redirect('shop:userlogin')
+            
+
+    def get(self, request):
+        form_instance = LoginForm()
+        context = {"form": form_instance}
+        return render(request, 'userlogin.html', context)
+
+
+class Userlogout(View):
+    def get(self, request):
+        logout(request)  # removes the current user from the session
+        return redirect('shop:userlogin')
+    
+
+from shop.forms import AddcategoryForm, AddproductForm
+
+# Add Category
+class AddCategory(View):
+    def get(self, request):
+        form_instance = AddcategoryForm()
+        context = {"form": form_instance}
+        return render(request, 'addcategory.html', context)
+
+    def post(self, request):
+        form_instance = AddcategoryForm(request.POST, request.FILES)
+        if form_instance.is_valid():
+            form_instance.save()
+            return redirect('shop:addcategories')
+        else:
+            print(form_instance.errors)
+
+# Add Product
+class AddProduct(View):
+    def get(self, request):
+        form_instance = AddproductForm()
+        context = {"form": form_instance}
+        return render(request, 'addproduct.html', context)
+
+    def post(self, request):
+        form_instance = AddproductForm(request.POST, request.FILES)
+        if form_instance.is_valid():
+            form_instance.save()
+            return redirect('shop:addproducts')
+        else:
+            print(form_instance.errors)
+
+class ProductDetail(View):
+    def get(self,request,i):
+        p=Product.objects.get(id=i)
+        context={'product':p}
+        return render(request,'productdetail.html',context)

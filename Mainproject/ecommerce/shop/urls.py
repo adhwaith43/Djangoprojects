@@ -22,6 +22,14 @@ app_name='shop'
 urlpatterns = [
     path('',views.CategoryView.as_view(),name='categories'),
     path('products/<int:i>',views.Categoryproducts.as_view(),name='products'),
+    path('addcategories/',views.AddCategory.as_view(),name='addcategories'),
+    path('addproducts/',views.AddProduct.as_view(),name='addproducts'),
+    path('register/',views.Register.as_view(),name="userregister"),
+    path('login/',views.Userlogin.as_view(),name="userlogin"),
+    path('adminhome/',views.AdminHome.as_view(),name="adminhome"),
+    path('userhome/',views.Userhome.as_view(),name="userhome"),
+    path('userlogout/',views.Userlogout.as_view(),name="userlogout"),
+    path('productdetail/<int:i>/',views.ProductDetail.as_view(),name="productdetail"),
 ]
 
 from django.conf.urls.static import static
