@@ -20,5 +20,8 @@ from cart import views
 app_name='cart'
 
 urlpatterns = [
-    # path('categories/',views.CategoryView.as_view(),name='categories'),
+    path('addtocart/<int:i>/',views.AddToCart.as_view(),name='addtocart'),
+    path('cartview/',views.CartView.as_view(),name='cartview'),
+    path('cartdecrement/<int:i>/',views.CartDecrement.as_view(),name='cartdecrement'),
+    path('cartdelete/<int:i>/',views.CartDelete.as_view(),name='cartdelete'),
 ]

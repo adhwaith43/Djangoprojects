@@ -26,7 +26,7 @@
                 <a class="btn hvr-hover" href="{% url 'shop:editproduct' product.id %}">Add Stock</a> <!-- connect directly to admin page -->
                 {% else %}
                     {% if product.stock > 0 %}
-                <a class="btn hvr-hover" href="#">Add to Cart</a>
+                <a class="btn hvr-hover" href="{% url 'cart:addtocart' product.id %}">Add to Cart</a>
                     {% else %}
                     <a class="btn hvr-hover" href="#">Out of stock</a>
                     {% endif %}

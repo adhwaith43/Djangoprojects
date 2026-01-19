@@ -7,6 +7,9 @@ class Cart(models.Model):
     quantity=models.IntegerField()
     date_added=models.DateTimeField(auto_now_add=True)
 
+    def subtotal(self):
+        return self.quantity * self.product.price
+
     def __str__(self):
-        return self.user.username
+        return self.product.name
 

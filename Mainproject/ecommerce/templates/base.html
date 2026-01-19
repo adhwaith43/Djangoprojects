@@ -28,6 +28,9 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -75,10 +78,12 @@
                                 {% endfor %}
                             </ul>
                         </li>
-                        {% if user.is_authenticated %}  <!-- # is a user is logged in -->
+                        {% if user.is_authenticated %} <!-- # is a user is logged in -->
                         {% if user.is_superuser == True %} <!-- # is admin user -->
-                        <li class="nav-item"><a class="nav-link" href="{% url 'shop:addcategories' %}">Add Categories</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'shop:addproducts' %}">Add Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'shop:addcategories' %}">Add
+                                Categories</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'shop:addproducts' %}">Add Products</a>
+                        </li>
                         {% endif %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'shop:userlogout' %}">Logout</a></li>
                         {% else %} <!-- {% if no user is logged in} -->
@@ -144,10 +149,10 @@
     <div class="top-search">
         <div class="container">
             <form action="{% url 'search:search' %}">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search">
-                <button type="submit" class="input-group-addon"><span ><i class="fa fa-search"></i></span></button>
-            </div>
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search">
+                    <button type="submit" class="input-group-addon"><span><i class="fa fa-search"></i></span></button>
+                </div>
             </form>
         </div>
     </div>
