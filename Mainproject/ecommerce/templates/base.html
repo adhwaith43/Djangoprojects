@@ -143,11 +143,12 @@
     <!-- Start Top Search -->
     <div class="top-search">
         <div class="container">
+            <form action="{% url 'search:search' %}">
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                <input type="text" class="form-control" placeholder="Search">
-                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                <input type="text" name="q" class="form-control" placeholder="Search">
+                <button type="submit" class="input-group-addon"><span ><i class="fa fa-search"></i></span></button>
             </div>
+            </form>
         </div>
     </div>
     <!-- End Top Search -->
