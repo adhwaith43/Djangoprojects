@@ -18,7 +18,7 @@ class Order(models.Model):
     address=models.TextField(max_length=100)
     phone=models.CharField(max_length=10)
     amount=models.IntegerField()
-    order_id=models.CharField(max_length=200)
+    order_id=models.CharField(max_length=200,null=True)
     ordered_date=models.DateTimeField(auto_now_add=True)
     is_ordered=models.BooleanField(default=False)
     delivery_status=models.CharField(default='Pending',max_length=200)
