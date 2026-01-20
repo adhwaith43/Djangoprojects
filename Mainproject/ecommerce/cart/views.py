@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.views import View
-
+from cart.forms import OrderForm
 from shop.models import Product
 from cart.models import Cart
 
@@ -24,11 +24,24 @@ class AddToCart(View): # to add to cart
         
 
 class CartView(View):  # to display cart items selected by the current user
+    # def get(self,request):
+    #     u=request.user # current user
+    #     c=Cart.objects.filter(user=u)  # reads all items selected by the current user
+    #     context={'cart':c}
+    #     return render(request,'cart.html',context)
+
+
     def get(self,request):
         u=request.user # current user
         c=Cart.objects.filter(user=u)  # reads all items selected by the current user
-        context={'cart':c}
+
+        total=0
+        for i in c:
+            total+=i.subtotal()
+        context={'cart':c,'total':total}
         return render(request,'cart.html',context)
+    
+    
     
 class CartDecrement(View):  # to decrease quantity of a cart item
     def get(self,request,i):
@@ -53,3 +66,10 @@ class CartDelete(View):  # to delete a cart item
         except:
             pass
         return redirect('cart:cartview')
+
+
+class Checkout(View):
+    def get(self,request):
+        form_instance=OrderForm()
+        context={'form':form_instance}
+        return render(request,'checkout.html',context)
