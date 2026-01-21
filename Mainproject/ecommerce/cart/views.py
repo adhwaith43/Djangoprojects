@@ -45,8 +45,10 @@ class CartView(View):  # to display cart items selected by the current user
     
 class CartDecrement(View):  # to decrease quantity of a cart item
     def get(self,request,i):
+        p=Product.objects.get(id=i)
+        u=request.user # logged in user
         try:
-            c=Cart.objects.get(id=i)
+            c=Cart.objects.get(user=u,product=p)
             if c.quantity > 1:
                 c.quantity-=1
                 c.save()
@@ -60,8 +62,10 @@ class CartDecrement(View):  # to decrease quantity of a cart item
 
 class CartDelete(View):  # to delete a cart item
     def get(self,request,i):
+        p=Product.objects.get(id=i)
+        u=request.user # logged in user
         try:
-            c=Cart.objects.get(id=i)
+            c=Cart.objects.get(user=u,product=p)
             c.delete()
         except:
             pass
@@ -76,38 +80,38 @@ class Checkout(View):
         context={'form':form_instance}
         return render(request,'checkout.html',context)
     
-    # def post(self,request):
-    #     print(request.POST)
-    #     form_instance=OrderForm(request.POST)
-    #     if form_instance.is_valid():
-    #             o=form_instance.save(commit=False)
-    #             # user
-    #             u=request.user
-    #             o.user=u
+    def post(self,request):
+        print(request.POST)
+        form_instance=OrderForm(request.POST)
+        if form_instance.is_valid():
+                o=form_instance.save(commit=False)
+                # user
+                u=request.user
+                o.user=u
 
-    #             # order amount
-    #             c=Cart.objects.filter(user=u)  
-    #             total=0
-    #             for i in c:
-    #                 total+=i.subtotal()
-    #             print(total)
-    #             o.amount=int(total)
-    #             o.save()
+                # order amount
+                c=Cart.objects.filter(user=u)  
+                total=0
+                for i in c:
+                    total+=i.subtotal()
+                print(total)
+                o.amount=int(total)
+                o.save()
 
-    #             # payment method
-    #             if(o.payment_method=="Online"):
-    #                 # 1.Razor pay client connection
-    #                 client=razorpay.Client(auth=('rzp_test_S60HMkQsPcr2Os','lykcXlDgvU2HTCW2SDgjTT9c'))
-    #                 print(client)
+                # payment method
+                if(o.payment_method=="Online"):
+                    # 1.Razor pay client connection
+                    client=razorpay.Client(auth=('rzp_test_S60HMkQsPcr2Os','lykcXlDgvU2HTCW2SDgjTT9c'))
+                    print(client)
 
-    #                 # 2.place order
-    #                 response_payment=client.order.create(dict(amount=o.amount*100,currency='INR')) # (ammount*100)converting into paisa for proper displaying
-    #                 print(response_payment)
-    #                 id=response_payment['id']
-    #                 o.order_id=id
-    #                 o.save()
-    #                 context={'payment':response_payment}
-    #             else:
-    #                 pass
+                    # 2.place order
+                    response_payment=client.order.create(dict(amount=o.amount*100,currency='INR')) # (amount*100)converting into paisa for proper displaying
+                    print(response_payment)
+                    id=response_payment['id']
+                    o.order_id=id
+                    o.save()
+                    context={'payment':response_payment}
+                else:
+                    pass
 
-        # return render(request,'payment.html',context)
+        return render(request,'payment.html',context)
