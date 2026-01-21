@@ -4,7 +4,8 @@ from cart.forms import OrderForm
 from shop.models import Product
 from cart.models import Cart
 
-# Create your views here.
+import uuid
+
 
 class AddToCart(View): # to add to cart
     def get(self,request,i):
@@ -71,7 +72,7 @@ class CartDelete(View):  # to delete a cart item
             pass
         return redirect('cart:cartview')
 
-
+from cart.models import Order_items
 import razorpay # import razorpay
 
 class Checkout(View):
@@ -111,7 +112,19 @@ class Checkout(View):
                     o.order_id=id
                     o.save()
                     context={'payment':response_payment}
-                else:
-                    pass
 
-        return render(request,'payment.html',context)
+                    return render(request,'payment.html',context)
+                else:
+                    id=uuid.uuid4().hex[:14]
+                    o.order_id='order_COD'+id
+                    o.is_ordered=True
+                    o.save()
+
+                    # Add each item from cart to order_items table
+                    for i in c:
+                        item=Order_items.objects.create(order=o,product=i.product,quantity=i.quantity)
+                        item.save()
+
+                    c.delete()  # to delete  cart
+
+                    return render(request,'payment.html')
