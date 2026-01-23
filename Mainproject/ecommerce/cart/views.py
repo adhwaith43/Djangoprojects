@@ -128,3 +128,25 @@ class Checkout(View):
                     c.delete()  # to delete  cart
 
                     return render(request,'payment.html')
+
+
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+from cart.models import Order
+
+@method_decorator(csrf_exempt,name="dispatch")
+class Paymentsuccess(View):
+    def post(self,request):
+        print(request.POST)
+
+        id=request.POST['razorpay_order_id']
+
+        # order
+        o=Order.objects.get(order_id=id)
+        o.is_ordered=True
+        o.save()
+        # orderitems
+        # cart
+        
+        return render(request,'paymentsuccess.html') 
+
