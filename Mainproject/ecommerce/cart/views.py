@@ -133,10 +133,14 @@ class Checkout(View):
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from cart.models import Order
-
+from django.contrib.auth import login
+from django.contrib.auth.models import User
 @method_decorator(csrf_exempt,name="dispatch")
 class Paymentsuccess(View):
-    def post(self,request):
+    def post(self,request,i):
+
+        u=User.objects.get(username=i)
+        login(request,u)
         print(request.POST)
 
         id=request.POST['razorpay_order_id']
@@ -146,7 +150,13 @@ class Paymentsuccess(View):
         o.is_ordered=True
         o.save()
         # orderitems
+
         # cart
+        c=Cart.objects.filter(user=request.user)
+        for i in c:
+            item=Order_items.objects.create(order=o,product=i.product,quantity=i.quantity)
+            item.save()
+            c.delete()
         
         return render(request,'paymentsuccess.html') 
 

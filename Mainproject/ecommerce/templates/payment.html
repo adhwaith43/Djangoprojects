@@ -5,7 +5,7 @@
     {% if payment %}
     <h1 class="text-center">Payment</h1>
 
-    <form action="{% url 'cart:success' %}" method="POST">
+    <form action="{% url 'cart:success' user.username %}" method="POST">
         <script src="https://checkout.razorpay.com/v1/checkout.js" 
             data-key="rzp_test_S60HMkQsPcr2Os" 
             data-amount="{{payment.amount}}" 
