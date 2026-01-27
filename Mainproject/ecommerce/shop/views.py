@@ -139,3 +139,9 @@ class Editproduct(View):
         if form_instance.is_valid():
                 form_instance.save()
                 return redirect('shop:categories')
+
+
+
+class Yourorders(View):
+    def get(self,request,i):
+        return render(request,'ordersummary.html')

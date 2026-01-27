@@ -79,16 +79,18 @@
                             </ul>
                         </li>
                         {% if user.is_authenticated %} <!-- # is a user is logged in -->
-                        {% if user.is_superuser == True %} <!-- # is admin user -->
-                        <li class="nav-item"><a class="nav-link" href="{% url 'shop:addcategories' %}">Add
-                                Categories</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'shop:addproducts' %}">Add Products</a>
-                        </li>
-                        {% endif %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'shop:userlogout' %}">Logout</a></li>
-                        {% else %} <!-- {% if no user is logged in} -->
-                        <li class="nav-item"><a class="nav-link" href="{% url 'shop:userregister' %}">Register</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'shop:userlogin' %}">Login</a></li>
+                            {% if user.is_superuser == True %} <!-- # is admin user -->
+                            <li class="nav-item"><a class="nav-link" href="{% url 'shop:addcategories' %}">Add
+                                    Categories</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'shop:addproducts' %}">Add Products</a>
+                            </li>
+                                {% else %}
+                                <li class="nav-item"><a class="nav-link" href="{% url 'shop:yourrders' %}">Your orders</a></li>
+                                {% endif %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'shop:userlogout' %}">Logout</a></li>
+                            {% else %} <!-- {% if no user is logged in} -->
+                            <li class="nav-item"><a class="nav-link" href="{% url 'shop:userregister' %}">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'shop:userlogin' %}">Login</a></li>
                         {% endif %}
                     </ul>
                 </div>

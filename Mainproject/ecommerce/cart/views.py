@@ -136,12 +136,13 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from cart.models import Order
 from django.contrib.auth import login
-from django.contrib.auth.models import User
+from shop.models import CustomUser
+# from django.contrib.auth.models import User
 @method_decorator(csrf_exempt,name="dispatch")
 class Paymentsuccess(View):
     def post(self,request,i):
 
-        u=User.objects.get(username=i)
+        u=CustomUser.objects.get(username=i)
         login(request,u)
         print(request.POST)
 
@@ -164,4 +165,3 @@ class Paymentsuccess(View):
         c.delete()
         
         return render(request,'paymentsuccess.html') 
-
