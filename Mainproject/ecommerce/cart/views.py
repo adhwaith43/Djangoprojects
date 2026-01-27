@@ -156,7 +156,10 @@ class Paymentsuccess(View):
         for i in c:
             item=Order_items.objects.create(order=o,product=i.product,quantity=i.quantity)
             item.save()
-            c.delete()
+            item.product.stock=item.quantity
+            item.product.save()
+        
+        c.delete()
         
         return render(request,'paymentsuccess.html') 
 
