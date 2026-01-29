@@ -89,7 +89,10 @@ class Userlogout(View):
 
 from shop.forms import AddcategoryForm, AddproductForm
 
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 # Add Category
+@method_decorator(login_required,name="dispatch")
 class AddCategory(View):
     def get(self, request):
         form_instance = AddcategoryForm()
@@ -141,7 +144,9 @@ class Editproduct(View):
                 return redirect('shop:categories')
 
 
-
+from cart.models import Order
 class Yourorders(View):
-    def get(self,request,i):
-        return render(request,'ordersummary.html')
+    def get(self,request):
+        o=Order.objects.filter(user=request.user,is_ordered=True)
+        context={'orders':o}
+        return render(request,'ordersummary.html',context)
