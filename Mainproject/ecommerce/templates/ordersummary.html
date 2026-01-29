@@ -1,19 +1,34 @@
 {%extends 'base.html' %}
-{%load crispy_forms_tags %}
 
 {% block content %}
-<div class="container w-50 p-5 mt-5 mb-5 border border-3 border-danger">
-    <h1 class="text-center">Login User</h1>
-    <form method="POST">
-        <div class="text-center">
-            <div class="text-center mt-3 ">
-                
-
-
-            </div>
-            <input type="submit" class="btn btn-primary text-center mt-3">
-        </div>
-    </form>
+<div class="container ">
+    <h1 class="text-center">Order Summary</h1>
+    <br>
+     <table class="table table-bordered ">
+        <tr>
+            <th>Order No.</th>
+            <th>Ordered Date</th>
+            <th>Order Amount</th>
+            <th>Order Status</th>
+            <th>Order Items</th>
+        </tr>
+        {% for i in orders %}
+        <tr>
+            <td class="text-danger">{{i.order_id}}</td>
+            <td>{{i.ordered_date}}</td>
+            <td>{{i.amount}}</td>
+            <td class="text-success">{{i.delivery_status}}</td>
+            <td>
+            {% for j in i.products.all %}
+            <p>{{j.product.image.url}}</p>
+            <p>{{j.product.name}}</p>
+            <p>{{j.quantity}}</p>
+            {% endfor %}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    
 
 <br>
 </div>

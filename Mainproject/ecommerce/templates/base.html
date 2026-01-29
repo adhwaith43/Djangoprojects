@@ -85,7 +85,7 @@
                             <li class="nav-item"><a class="nav-link" href="{% url 'shop:addproducts' %}">Add Products</a>
                             </li>
                                 {% else %}
-                                <li class="nav-item"><a class="nav-link" href="{% url 'shop:yourrders' %}">Your orders</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'shop:yourorders' %}">Your orders</a></li>
                                 {% endif %}
                             <li class="nav-item"><a class="nav-link" href="{% url 'shop:userlogout' %}">Logout</a></li>
                             {% else %} <!-- {% if no user is logged in} -->
