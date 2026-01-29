@@ -141,7 +141,8 @@ class ProductDetail(View):
         context={'product':p}
         return render(request,'productdetail.html',context)
     
-
+@method_decorator(admin_required,name="dispatch")
+@method_decorator(login_required,name="dispatch")
 class Editproduct(View):
     def get(self,request,i):
         b=Product.objects.get(id=i)
