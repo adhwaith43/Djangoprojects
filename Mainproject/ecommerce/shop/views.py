@@ -91,7 +91,18 @@ from shop.forms import AddcategoryForm, AddproductForm
 
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-# Add Category
+from django.http import HttpResponse
+
+#decorator required -admin_requied
+def admin_required(fun):
+    def wrapper(request):
+        if not request.user.is_supersuer:
+            return HttpResponse("Admin User Only")
+        else:
+            return fun(request)
+    return wrapper
+
+@method_decorator(admin_required,name="dispatch")
 @method_decorator(login_required,name="dispatch")
 class AddCategory(View):
     def get(self, request):
@@ -107,6 +118,8 @@ class AddCategory(View):
         else:
             print(form_instance.errors)
 
+@method_decorator(admin_required,name="dispatch")
+@method_decorator(login_required,name="dispatch")
 # Add Product
 class AddProduct(View):
     def get(self, request):
