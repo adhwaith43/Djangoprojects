@@ -6,7 +6,11 @@ from cart.models import Cart
 
 import uuid
 
+from django.contrib.auth.decorators import login_required
+from shop.decorators import admin_required
 
+@method_decorator(admin_required,name="dispatch")
+@method_decorator(login_required,name="dispatch")
 class AddToCart(View): # to add to cart
     def get(self,request,i):
         p=Product.objects.get(id=i)
@@ -23,7 +27,8 @@ class AddToCart(View): # to add to cart
         return redirect('cart:cartview')
 
         
-
+@method_decorator(admin_required,name="dispatch")
+@method_decorator(login_required,name="dispatch")
 class CartView(View):  # to display cart items selected by the current user
     # def get(self,request):
     #     u=request.user # current user
@@ -43,7 +48,8 @@ class CartView(View):  # to display cart items selected by the current user
         return render(request,'cart.html',context)
     
     
-    
+@method_decorator(admin_required,name="dispatch")
+@method_decorator(login_required,name="dispatch")    
 class CartDecrement(View):  # to decrease quantity of a cart item
     def get(self,request,i):
         p=Product.objects.get(id=i)
@@ -61,6 +67,8 @@ class CartDecrement(View):  # to decrease quantity of a cart item
         
         return redirect('cart:cartview')
 
+@method_decorator(admin_required,name="dispatch")
+@method_decorator(login_required,name="dispatch")
 class CartDelete(View):  # to delete a cart item
     def get(self,request,i):
         p=Product.objects.get(id=i)
@@ -75,6 +83,8 @@ class CartDelete(View):  # to delete a cart item
 from cart.models import Order_items
 import razorpay # import razorpay
 
+@method_decorator(admin_required,name="dispatch")
+@method_decorator(login_required,name="dispatch")
 class Checkout(View):
     def get(self,request):
         form_instance=OrderForm()
@@ -137,6 +147,9 @@ from django.views.decorators.csrf import csrf_exempt
 from cart.models import Order
 from django.contrib.auth import login
 from shop.models import CustomUser
+
+@method_decorator(admin_required,name="dispatch")
+@method_decorator(login_required,name="dispatch")
 # from django.contrib.auth.models import User
 @method_decorator(csrf_exempt,name="dispatch")
 class Paymentsuccess(View):
